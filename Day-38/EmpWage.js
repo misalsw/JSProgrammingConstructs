@@ -13,18 +13,25 @@ let empHrs = 0;
 let totalWorkingHrs = 0;
 let totalWorkingDays = 0;
 
+//Array
+let empDailyWageArray = new Array();
+
 /** getting employee hours **/
 function getEmpHrs(empCheck) {
   switch (empCheck) {
     case IS_PART_TIME:
-      return PART_TIME_HRS;
+      return (empHrs = PART_TIME_HRS);
       break;
     case IS_FULL_TIME:
-      return FULL_TIME_HRS;
+      return (empHrs = FULL_TIME_HRS);
       break;
     default:
-      return IS_ABSENT;
+      return (empHrs = IS_ABSENT);
   }
+}
+
+function calcDailyWage(empHrs) {
+  return empHrs * EMP_WAGE_PHR;
 }
 
 while (
@@ -35,9 +42,11 @@ while (
 
   let empCheck = Math.floor(Math.random() * 3);
   empHrs += getEmpHrs(empCheck);
+
+  empDailyWageArray.push(calcDailyWage(empHrs)); //storing daily wage in an array.
 }
 
-let empWage = empHrs * EMP_WAGE_PHR; //Calculating wage.
+let empWage = calcDailyWage(empHrs); //Calculating wage.
 console.log(
   "Total Days :- " +
     totalWorkingDays +
@@ -46,3 +55,4 @@ console.log(
     " & Employee Wage :- " +
     empWage
 );
+console.log(empDailyWageArray); //printing array.
