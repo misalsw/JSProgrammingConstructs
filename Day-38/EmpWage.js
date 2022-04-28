@@ -4,6 +4,7 @@ const IS_FULL_TIME = 2;
 const EMP_WAGE_PHR = 20;
 const PART_TIME_HRS = 4;
 const FULL_TIME_HRS = 8;
+const NUM_OF_WORKING_DAYS = 20;
 
 function getEmpHrs(empCheck) {
   switch (empCheck) {
@@ -18,7 +19,11 @@ function getEmpHrs(empCheck) {
   }
 }
 
-let empCheck = Math.floor(Math.random() * 3);
+let empHrs = 0;
+for (let i = 0; i < NUM_OF_WORKING_DAYS; i++) {
+  let empCheck = Math.floor(Math.random() * 3);
+  empHrs += getEmpHrs(empCheck);
+}
 
-let empWage = getEmpHrs(empCheck) * EMP_WAGE_PHR; //Calculating wage.
-console.log("Employee Wage :- " + empWage);
+let empWage = empHrs * EMP_WAGE_PHR; //Calculating wage.
+console.log("Employee Hours :- " + empHrs + " & Employee Wage :- " + empWage);
