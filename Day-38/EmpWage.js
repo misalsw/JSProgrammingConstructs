@@ -18,19 +18,23 @@ let empDailyWageArr = new Array();
 let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
 let fullDayWageArr = mapDayWithWageArr.filter(fulltimeWage);
 
+//Array
+let empDailyWageArray = new Array();
+
 /** getting employee hours **/
 function getEmpHrs(empCheck) {
   switch (empCheck) {
     case IS_PART_TIME:
-      return PART_TIME_HRS;
+      return (empHrs = PART_TIME_HRS);
       break;
     case IS_FULL_TIME:
-      return FULL_TIME_HRS;
+      return (empHrs = FULL_TIME_HRS);
       break;
     default:
-      return IS_ABSENT;
+      return (empHrs = IS_ABSENT);
   }
 }
+
 
 // Array Helper Function
 // Calc UC-7 total Wage using Array forEach transversal or reduce method
@@ -88,6 +92,7 @@ console.log("UC 7D - First time Fulltome wage was earned on day: " +
 
 
 
+
 while (
   totalWorkingHrs <= MAX_HRS_IN_MONTH &&
   totalWorkingDays < NUM_OF_WORKING_DAYS
@@ -96,9 +101,11 @@ while (
 
   let empCheck = Math.floor(Math.random() * 3);
   empHrs += getEmpHrs(empCheck);
+
+  empDailyWageArray.push(calcDailyWage(empHrs)); //storing daily wage in an array.
 }
 
-let empWage = empHrs * EMP_WAGE_PHR; //Calculating wage.
+let empWage = calcDailyWage(empHrs); //Calculating wage.
 console.log(
   "Total Days :- " +
     totalWorkingDays +
@@ -107,3 +114,4 @@ console.log(
     " & Employee Wage :- " +
     empWage
 );
+console.log(empDailyWageArray); //printing array.
